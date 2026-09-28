@@ -9,6 +9,8 @@ add_executable(SimpleSnakeGame
         src/main.cpp
         src/Game.cpp
         src/Game.h
+        src/Player.cpp
+        src/Player.h
 )
 
 target_link_libraries(SimpleSnakeGame PRIVATE raylib)
