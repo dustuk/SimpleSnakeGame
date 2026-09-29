@@ -18,14 +18,23 @@ void Game::DrawGrid2D(int startX, int startY, int cols, int rows, int cellSize, 
 }
 
 void Game::Run() {
+    player.Graw();
+    player.Graw();
+    player.Graw();
+    player.Graw();
+
+
     while (!WindowShouldClose()) {
+
         player.Update();
+        food.Update();
 
         BeginDrawing();
 
         player.Draw();
+        food.Draw();
 
-        DrawGrid2D(0, 0, 16, 12, 50, GRAY);
+        DrawGrid2D(0, 0, cols, rows, 50, GRAY);
 
         ClearBackground(DARKGRAY);
         EndDrawing();
