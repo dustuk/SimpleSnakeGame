@@ -1,5 +1,4 @@
 #pragma once
-#include "Player.h"
 #include <random>
 
 
@@ -7,15 +6,22 @@ class Food {
 private:
     std::random_device rd;
 
-    int posX = 75;
-    int posY = 75;
+    int posX{};
+    int posY{};
+    float radius = 15.0f;
 
-    Player player;
 public:
-    Food() = default;
+    Food();
 
-    void Pos();
+    [[nodiscard]] float GetX() const {return static_cast<float>(posX);}
+
+    [[nodiscard]] float GetY() const {return static_cast<float>(posY);}
+
+    [[nodiscard]] float GetRadius() const {return radius;}
+
+    void Restart() {Update();};
 
     void Update();
     void Draw() const;
+
 };

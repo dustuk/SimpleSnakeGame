@@ -17,11 +17,11 @@ void Player::Update() {
 
     double currentTime = GetTime();
     if (currentTime - lastUpdateTime >= moveInterval) {
+
+
         for (size_t i = snake.size() - 1; i > 0; --i) {
-            if (snake[i].x != snake[i - 1].x || snake[i].y != snake[i - 1].y) {
-                snake[i].x = snake[i - 1].x;
-                snake[i].y = snake[i - 1].y;
-            }
+            snake[i].x = snake[i - 1].x;
+            snake[i].y = snake[i - 1].y;
         }
 
         if (direction == Directions::Up) snake[0].y -= moveSpeed;
@@ -30,11 +30,21 @@ void Player::Update() {
         if (direction == Directions::Left) snake[0].x -= moveSpeed;
 
         currentDirection = direction;
-        lastUpdateTime = currentTime;
 
+        if (snake[0].x >= windowWidth) {
+            snake[0].x = 0;
+        } else if (snake[0].x < 0) {
+            snake[0].x = windowWidth  - gridSize;
+        }
+
+        if (snake[0].y >= windowHeight) {
+            snake[0].y = 50;
+        } else if (snake[0].y < 50) {
+            snake[0].y = windowHeight - gridSize;
+        }
+
+        lastUpdateTime = currentTime;
     }
-    posX = snake[0].x;
-    posY = snake[0].y;
 }
 
 void Player::Draw() const {
@@ -42,3 +52,5 @@ void Player::Draw() const {
         DrawRectangleRec(segment, RED);
     }
 }
+
+
