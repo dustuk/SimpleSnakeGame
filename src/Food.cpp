@@ -1,12 +1,11 @@
 #include "Food.h"
 #include "raylib.h"
 
-Food::Food() {
+Food::Food() : gen(rd()) {
     Update();
 }
 
 void Food::Update() {
-    std::mt19937 gen(Food::rd());
     std::uniform_int_distribution<> randPosX(0, (800/50) - 1);
     posX = randPosX(gen) * 50 + 25;
 

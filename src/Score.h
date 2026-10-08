@@ -1,14 +1,17 @@
 #pragma once
-#include <vector>
-#include "raylib.h"
 
 class Score {
 private:
-    size_t score{};
+    int score = 0;
+    int highestScore{};
 
 public:
     Score() = default;
 
-    void Update(const std::vector<Rectangle>& snake);
+    void SaveScore();
+
+    void Reset();
+
+    void Update();
     void Draw() const;
 };

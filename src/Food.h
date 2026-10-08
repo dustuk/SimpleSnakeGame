@@ -5,6 +5,7 @@
 class Food {
 private:
     std::random_device rd;
+    std::mt19937 gen;
 
     int posX{};
     int posY{};

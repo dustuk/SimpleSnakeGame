@@ -3,6 +3,8 @@
 Game::Game(int width, int height, const char* title) : windowWidth(width), windowHeight(height) {
     InitWindow(windowWidth, windowHeight, title);
     SetTargetFPS(60);
+    player.ClaimWindowSizes(width, height);
+    mainMenu.ClaimWindowSizes(width, height);
 }
 
 Game::~Game() {
@@ -29,6 +31,7 @@ void Game::CheckPlayerFoodCollision() {
     if (CheckCollisionCircleRec(Vector2{food.GetX(), food.GetY()}, food.GetRadius(), player.GetSnake()[0])) {
         food.Restart();
         player.Graw();
+        score.Update();
     }
 }
 
@@ -43,11 +46,13 @@ void Game::DrawGrid2D(int startX, int startY, int cols, int rows, int cellSize, 
 
 void Game::Run() {
     while (!WindowShouldClose()) {
-        mainMenu.Update();
+        mainMenu.Update(score);
+
+        if (mainMenu.ShouldClose()) break;
 
         if (!mainMenu.GetIsMainMenu()) {
             player.Update();
-            score.Update(player.GetSnake());
+            score.SaveScore();
             CheckPlayerFoodCollision();
             CheckRestart();
 
