@@ -45,6 +45,6 @@ public:
 
     void DrawBtn() const;
 
-    void Update(Score& score);
+    void Update(const Score& score);
     void Draw() const;
 };

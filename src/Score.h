@@ -10,7 +10,8 @@ public:
 
     void SaveScore();
 
-    void Reset();
+    void ResetScore() {score = 0;}
+    void ResetHighestScore() const;
 
     void Update();
     void Draw() const;

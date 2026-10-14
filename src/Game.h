@@ -23,6 +23,7 @@ public:
 
     void CheckRestart();
     void CheckPlayerFoodCollision();
+    void RespawnFoodSafely();
 
     static void DrawGrid2D(int startX, int startY, int cols, int rows, int cellSize, Color color);
 

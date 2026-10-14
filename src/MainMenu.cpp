@@ -42,7 +42,7 @@ void MainMenu::DrawBtn() const {
     }
 }
 
-void MainMenu::Update(Score& score) {
+void MainMenu::Update(const Score& score) {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         for (const auto& btn : btns) {
             if (IsHovered(btn.bounds)) {
@@ -51,7 +51,7 @@ void MainMenu::Update(Score& score) {
                         isInMainMenu = false;
                         break;
                     case MenuAction::ResetScore:
-                        score.Reset();
+                        score.ResetHighestScore();
                         break;
                     case MenuAction::Exit:
                         shouldClose = true;

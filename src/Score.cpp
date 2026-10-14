@@ -19,8 +19,7 @@ void Score::SaveScore() {
 
 }
 
-void Score::Reset() {
-    score = 0;
+void Score::ResetHighestScore() const {
     std::ofstream oFile("../score.txt");
     oFile << score;
     oFile.close();
@@ -33,7 +32,7 @@ void Score::Update() {
 
 void Score::Draw() const {
     DrawText(TextFormat("Score: %i", score), 0, 0, 40, YELLOW);
-    DrawText(TextFormat("Highest Score: %i", highestScore), 450, 0, 40, YELLOW);
+    DrawText(TextFormat("Highest Score: %i", highestScore), 425, 0, 40, YELLOW);
 }
 
 

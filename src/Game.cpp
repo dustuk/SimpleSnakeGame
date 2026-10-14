@@ -12,7 +12,6 @@ Game::~Game() {
 }
 
 
-
 void Game::CheckRestart() {
     if (player.GetSnake().size() > 4) {
         for (int i = 1; i < player.GetSnake().size(); ++i) {
@@ -29,9 +28,25 @@ void Game::CheckRestart() {
 
 void Game::CheckPlayerFoodCollision() {
     if (CheckCollisionCircleRec(Vector2{food.GetX(), food.GetY()}, food.GetRadius(), player.GetSnake()[0])) {
-        food.Restart();
         player.Graw();
         score.Update();
+        RespawnFoodSafely();
+    }
+}
+
+void Game::RespawnFoodSafely() {
+    bool collision = true;
+
+    while (collision) {
+        food.Restart();
+        collision = false;
+
+        for (const auto& segment : player.GetSnake()) {
+            if (CheckCollisionCircleRec(Vector2{food.GetX(), food.GetY()}, food.GetRadius(), segment)) {
+                collision = true;
+                break;
+            }
+        }
     }
 }
 
@@ -66,6 +81,7 @@ void Game::Run() {
             DrawGrid2D(0, 0, cols, rows, 50, GRAY);
             EndDrawing();
         } else {
+            score.ResetScore();
             BeginDrawing();
             mainMenu.Draw();
             EndDrawing();
