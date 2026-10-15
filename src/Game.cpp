@@ -28,8 +28,11 @@ void Game::CheckRestart() {
 
 void Game::CheckPlayerFoodCollision() {
     if (CheckCollisionCircleRec(Vector2{food.GetX(), food.GetY()}, food.GetRadius(), player.GetSnake()[0])) {
-        player.Graw();
+        player.Grow();
         score.Update();
+        if (score.GetScore() > 0 && score.GetScore() % 5 == 0) {
+            player.SpeedBoost();
+        }
         RespawnFoodSafely();
     }
 }

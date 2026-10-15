@@ -27,7 +27,6 @@ void Score::ResetHighestScore() const {
 
 void Score::Update() {
     ++score;
-
 }
 
 void Score::Draw() const {

@@ -13,6 +13,8 @@ public:
     void ResetScore() {score = 0;}
     void ResetHighestScore() const;
 
+    [[nodiscard]] int GetScore() const {return score;}
+
     void Update();
     void Draw() const;
 };

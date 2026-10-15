@@ -4,8 +4,19 @@ Player::Player() {
     snake.push_back(Rectangle{posX, posY, playerWidth, playerHeight});
 }
 
-void Player::Graw() {
+void Player::Grow() {
     snake.push_back(snake.back());
+}
+
+void Player::SpeedBoost() {
+    constexpr float minInterval = 0.04f;
+    constexpr float speedStep = 0.01f;
+
+    if (moveInterval - speedStep >= minInterval) {
+        moveInterval -= speedStep;
+    } else {
+        moveInterval = minInterval;
+    }
 }
 
 void Player::Update() {

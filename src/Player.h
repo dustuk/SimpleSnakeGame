@@ -10,7 +10,7 @@ private:
     const float playerHeight = 50.0f;
 
     const float moveSpeed = 50.0f;
-    const float moveInterval = 0.2f;
+    float moveInterval = 0.2f;
     double lastUpdateTime = 0.0;
 
 
@@ -34,7 +34,7 @@ private:
 public:
     Player();
 
-    void Graw();
+    void Grow();
 
     [[nodiscard]] float GetPosX() const {return posX;};
     [[nodiscard]] float GetPosY() const {return posY;};
@@ -44,6 +44,8 @@ public:
     void ClaimWindowSizes(int width, int height) {windowWidth = static_cast<float>(width); windowHeight = static_cast<float>(height);}
 
     void Restart() {snake.clear(); snake.push_back(Rectangle{posX, posY, playerWidth, playerHeight});}
+
+    void SpeedBoost();
 
     void Update();
     void Draw() const;
