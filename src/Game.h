@@ -6,11 +6,10 @@
 
 class Game {
 private:
-    const int windowWidth;
-    const int windowHeight;
+    int windowWidth, windowHeight;
 
-    const int cols = 16;
-    const int rows = 12;
+    const int cols = windowWidth/50;
+    const int rows = (windowHeight - 50)/50;
 
     Player player;
     Food food;

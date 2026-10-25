@@ -4,8 +4,22 @@ Player::Player() {
     snake.push_back(Rectangle{posX, posY, playerWidth, playerHeight});
 }
 
+void Player::SetupPlayer() {
+    windowWidth = static_cast<float>(GetScreenWidth());
+    windowHeight = static_cast<float>(GetScreenHeight());
+}
+
 void Player::Grow() {
     snake.push_back(snake.back());
+}
+
+void Player::Restart() {
+    snake.clear();
+    snake.push_back(Rectangle{posX, posY, playerWidth, playerHeight});
+    moveInterval = 0.2f;
+    direction = Directions::Right;
+    currentDirection = Directions::Right;
+    lastUpdateTime = GetTime();
 }
 
 void Player::SpeedBoost() {

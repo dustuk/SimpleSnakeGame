@@ -3,14 +3,14 @@
 #include <fstream>
 
 void Score::SaveScore() {
-    std::ifstream iFile("../score.txt");
+    std::ifstream iFile(path);
     if (iFile.is_open()) {
         iFile >> highestScore;
         iFile.close();
     }
 
-    if (highestScore <= score) {
-        std::ofstream oFile("../score.txt");
+    if (highestScore < score) {
+        std::ofstream oFile(path);
         if (oFile.is_open()) {
             oFile << score;
             oFile.close();
@@ -20,7 +20,7 @@ void Score::SaveScore() {
 }
 
 void Score::ResetHighestScore() const {
-    std::ofstream oFile("../score.txt");
+    std::ofstream oFile(path);
     oFile << score;
     oFile.close();
 }

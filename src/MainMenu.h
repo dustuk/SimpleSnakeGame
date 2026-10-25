@@ -41,7 +41,7 @@ public:
     [[nodiscard]] Rectangle BtnBounds() const;
     [[nodiscard]] static bool IsHovered(Rectangle btnBounds);
 
-    void ClaimWindowSizes(int width, int height);
+    void SetupMainMenu();
 
     void DrawBtn() const;
 

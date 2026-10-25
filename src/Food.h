@@ -7,12 +7,17 @@ private:
     std::random_device rd;
     std::mt19937 gen;
 
+    int windowWidth{};
+    int windowHeight{};
+
     int posX{};
     int posY{};
     float radius = 15.0f;
 
 public:
     Food();
+
+    void SetupFood();
 
     [[nodiscard]] float GetX() const {return static_cast<float>(posX);}
 

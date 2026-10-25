@@ -1,10 +1,11 @@
 #include "Game.h"
 
 Game::Game(int width, int height, const char* title) : windowWidth(width), windowHeight(height) {
-    InitWindow(windowWidth, windowHeight, title);
+    InitWindow(width, height, title);
     SetTargetFPS(60);
-    player.ClaimWindowSizes(width, height);
-    mainMenu.ClaimWindowSizes(width, height);
+    mainMenu.SetupMainMenu();
+    player.SetupPlayer();
+    food.SetupFood();
 }
 
 Game::~Game() {
@@ -30,6 +31,12 @@ void Game::CheckPlayerFoodCollision() {
     if (CheckCollisionCircleRec(Vector2{food.GetX(), food.GetY()}, food.GetRadius(), player.GetSnake()[0])) {
         player.Grow();
         score.Update();
+        if (player.GetSnake().size() >= cols * rows) {
+            score.SaveScore();
+            player.Restart();
+            mainMenu.Restart();
+            return;
+        }
         if (score.GetScore() > 0 && score.GetScore() % 5 == 0) {
             player.SpeedBoost();
         }
@@ -64,8 +71,6 @@ void Game::DrawGrid2D(int startX, int startY, int cols, int rows, int cellSize, 
 
 void Game::Run() {
     while (!WindowShouldClose()) {
-        mainMenu.Update(score);
-
         if (mainMenu.ShouldClose()) break;
 
         if (!mainMenu.GetIsMainMenu()) {
@@ -84,6 +89,7 @@ void Game::Run() {
             DrawGrid2D(0, 0, cols, rows, 50, GRAY);
             EndDrawing();
         } else {
+            mainMenu.Update(score);
             score.ResetScore();
             BeginDrawing();
             mainMenu.Draw();

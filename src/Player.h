@@ -34,6 +34,9 @@ private:
 public:
     Player();
 
+
+    void SetupPlayer();
+
     void Grow();
 
     [[nodiscard]] float GetPosX() const {return posX;};
@@ -41,9 +44,7 @@ public:
 
     [[nodiscard]] const std::vector<Rectangle>& GetSnake() const {return snake;}
 
-    void ClaimWindowSizes(int width, int height) {windowWidth = static_cast<float>(width); windowHeight = static_cast<float>(height);}
-
-    void Restart() {snake.clear(); snake.push_back(Rectangle{posX, posY, playerWidth, playerHeight});}
+    void Restart();
 
     void SpeedBoost();
 

@@ -5,6 +5,8 @@ private:
     int score = 0;
     int highestScore{};
 
+    const char* path = "score.txt";
+
 public:
     Score() = default;
 

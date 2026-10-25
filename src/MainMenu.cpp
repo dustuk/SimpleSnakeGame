@@ -1,9 +1,9 @@
 #include "MainMenu.h"
 
 
-void MainMenu::ClaimWindowSizes(int width, int height) {
-    windowWidth = static_cast<float>(width);
-    windowHeight = static_cast<float>(height);
+void MainMenu::SetupMainMenu() {
+    windowWidth = static_cast<float>(GetScreenWidth());
+    windowHeight = static_cast<float>(GetScreenHeight());
 
     btns.clear();
     btns.emplace_back("Start", BtnBounds(), MenuAction::Start);
