@@ -7,9 +7,7 @@
 class Game {
 private:
     int windowWidth, windowHeight;
-
-    const int cols = windowWidth/50;
-    const int rows = (windowHeight - 50)/50;
+    int cols, rows;
 
     Player player;
     Food food;

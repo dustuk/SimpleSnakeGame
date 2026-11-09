@@ -1,8 +1,9 @@
 #include "Game.h"
 
-Game::Game(int width, int height, const char* title) : windowWidth(width), windowHeight(height) {
+Game::Game(int width, int height, const char* title) : windowWidth(width), windowHeight(height), cols(width/50), rows((height - 50)/50) {
     InitWindow(width, height, title);
     SetTargetFPS(60);
+
     mainMenu.SetupMainMenu();
     player.SetupPlayer();
     food.SetupFood();
